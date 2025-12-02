@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
-const inter = Inter({
-  variable: "--font-inter",
+const outfit = Outfit({
   subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Redbrush Digital Agency",
-  description: "Creative digital solutions for modern brands",
-  icons: {
-    icon: '/favicon.ico',
-  },
+  title: "Surf Farm",
+  description: "Grounded out the blue, just pure surf, a fertile social fabric.",
 };
-
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import SplashingParticles from "@/components/SplashingParticles";
 
 export default function RootLayout({
   children,
@@ -25,16 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.variable} antialiased flex flex-col min-h-screen`}
-      >
-        <SplashingParticles />
-        <Header />
-        <main className="flex-grow">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${outfit.variable} font-sans bg-bg text-text antialiased`}>
+        <ThemeProvider>
           {children}
-        </main>
-        <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
